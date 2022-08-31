@@ -3,6 +3,11 @@ variable "kubeconfig_path" {
   description = "Path to kubeconfig file"
 }
 
+variable "kubeconfig_context" {
+  default     = "default"
+  description = "Context name in kubeconfig"
+}
+
 variable "github_owner" {
   type        = string
   description = "github owner"
