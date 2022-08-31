@@ -21,13 +21,9 @@ terraform {
   }
 }
 
-provider "flux" {}
 
 provider "kubernetes" {
   config_path = var.kubeconfig_path
-}
-
-provider "kubectl" {
 }
 
 provider "github" {
