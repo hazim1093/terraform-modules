@@ -43,10 +43,11 @@ data "github_repository" "flux_repo" {
 }
 
 resource "github_repository_file" "install" {
-  repository = data.github_repository.flux_repo.name
-  file       = data.flux_install.main.path
-  content    = data.flux_install.main.content
-  branch     = var.branch
+  repository          = data.github_repository.flux_repo.name
+  file                = data.flux_install.main.path
+  content             = data.flux_install.main.content
+  branch              = var.branch
+  overwrite_on_create = true
 }
 
 # Generate manifests
@@ -93,15 +94,17 @@ resource "kubernetes_secret" "main" {
 }
 
 resource "github_repository_file" "sync" {
-  repository = data.github_repository.flux_repo.name
-  file       = data.flux_sync.main.path
-  content    = data.flux_sync.main.content
-  branch     = var.branch
+  repository          = data.github_repository.flux_repo.name
+  file                = data.flux_sync.main.path
+  content             = data.flux_sync.main.content
+  branch              = var.branch
+  overwrite_on_create = true
 }
 
 resource "github_repository_file" "kustomize" {
-  repository = data.github_repository.flux_repo.name
-  file       = data.flux_sync.main.kustomize_path
-  content    = data.flux_sync.main.kustomize_content
-  branch     = var.branch
+  repository          = data.github_repository.flux_repo.name
+  file                = data.flux_sync.main.kustomize_path
+  content             = data.flux_sync.main.kustomize_content
+  branch              = var.branch
+  overwrite_on_create = true
 }
